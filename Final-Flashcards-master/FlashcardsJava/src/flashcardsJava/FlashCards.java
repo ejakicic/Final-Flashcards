@@ -16,6 +16,7 @@ public class FlashCards extends javax.swing.JFrame {
      */
     public FlashCards() {
         initComponents();
+        this.setTitle("Flashcards");
     }
 
     /**
@@ -27,15 +28,23 @@ public class FlashCards extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        QAlabel = new javax.swing.JLabel();
         NextButton = new javax.swing.JButton();
         BackButton = new javax.swing.JButton();
         LastButton = new javax.swing.JButton();
         FirstButton = new javax.swing.JButton();
-        FlipButton = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        QAlable = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        QAlabel.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        QAlabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        QAlabel.setText("Question1");
+        QAlabel.setToolTipText("");
+        QAlabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                QAlabelMouseClicked(evt);
+            }
+        });
 
         NextButton.setText("-->");
 
@@ -45,81 +54,90 @@ public class FlashCards extends javax.swing.JFrame {
 
         FirstButton.setText("<<");
 
-        FlipButton.setText("jButton1");
-        FlipButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FlipButtonActionPerformed(evt);
-            }
-        });
-
-        QAlable.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
-        QAlable.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        QAlable.setText("Question");
-        QAlable.setToolTipText("");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 297, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(55, 55, 55)
-                    .addComponent(QAlable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGap(55, 55, 55)))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 204, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(QAlable, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                    .addContainerGap()))
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(51, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(FirstButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BackButton)
-                        .addGap(43, 43, 43)
-                        .addComponent(NextButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(LastButton)))
-                .addGap(119, 119, 119))
+                .addContainerGap()
+                .addComponent(QAlabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(FlipButton))
+                .addContainerGap(87, Short.MAX_VALUE)
+                .addComponent(FirstButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BackButton)
+                .addGap(43, 43, 43)
+                .addComponent(NextButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(LastButton)
+                .addGap(52, 52, 52))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(48, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(39, 39, 39)
+                .addComponent(QAlabel, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(NextButton)
                     .addComponent(BackButton)
                     .addComponent(LastButton)
                     .addComponent(FirstButton))
-                .addGap(20, 20, 20)
-                .addComponent(FlipButton))
+                .addGap(45, 45, 45))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void FlipButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FlipButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_FlipButtonActionPerformed
+    // Like the isFlipped attribute of the Card class, this is false if the question is showing.
+    static boolean cardState = false;
+    static int position = 0;
+    static String[] QuestionArray = new String[5];
+    static String[] AnswerArray = new String[5];
+
+    private void QAlabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QAlabelMouseClicked
+        // Detects the current state of the card.
+        // Flips the card.
+
+        createArrays();
+
+        if (cardState) {
+            // The answer was showing before the label was clicked.
+            cardState = false;
+            // When switching back to a question, cycle to the next card.
+            position++;
+            
+            // Using a try-catch to loop back is surprisingly effective.
+            try {
+                this.QAlabel.setText(QuestionArray[position]);
+            } catch (ArrayIndexOutOfBoundsException abe) {
+                this.QAlabel.setText(QuestionArray[0]);
+                position = 0;
+            }// End of try-catch.
+
+        } else {
+            // The question was showing before the label was clicked.
+            cardState = true;
+            this.QAlabel.setText(AnswerArray[position]);
+
+        }
+
+    }//GEN-LAST:event_QAlabelMouseClicked
+
+    public void createArrays() {
+        // Will create matching arrays of questions and answers.
+        // Initialize class variables here.
+
+        // Mike ~ "I'm creating a question and answer array separately for testing purposes. Because Evan gave the cards two sides on their own, you only need one."
+        String testQuestionString = "Question";
+        String testAnswerString = "Answer";
+        for (int x = 0; x < 5; x++) {
+            QuestionArray[x] = testQuestionString + Integer.toString(x + 1);
+            AnswerArray[x] = testAnswerString + Integer.toString(x + 1);
+        }
+
+    }
 
     /**
      * @param args the command line arguments
@@ -152,17 +170,17 @@ public class FlashCards extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new FlashCards().setVisible(true);
+                
             }
         });
     }
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackButton;
     private javax.swing.JButton FirstButton;
-    private javax.swing.JButton FlipButton;
     private javax.swing.JButton LastButton;
     private javax.swing.JButton NextButton;
-    private javax.swing.JLabel QAlable;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel QAlabel;
     // End of variables declaration//GEN-END:variables
 }
