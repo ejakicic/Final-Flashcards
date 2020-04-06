@@ -140,6 +140,10 @@ public class FlashCards extends javax.swing.JFrame {
     static String[] QuestionArray = new String[5];
     static String[] AnswerArray = new String[5];
 
+    public void readCards() {
+        
+    }
+    
     private void flipThrough() {
         if (this.answerCheckBox.isSelected()) {
 
@@ -250,6 +254,7 @@ public class FlashCards extends javax.swing.JFrame {
         } else {
             this.QAlabel.setText(QuestionArray[position]);
         }
+        
     }//GEN-LAST:event_FirstButtonActionPerformed
 
     private void LastButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LastButtonActionPerformed
@@ -261,6 +266,7 @@ public class FlashCards extends javax.swing.JFrame {
         } else {
             this.QAlabel.setText(QuestionArray[position]);
         }
+        
     }//GEN-LAST:event_LastButtonActionPerformed
 
     private void RandomButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RandomButtonActionPerformed
@@ -271,6 +277,7 @@ public class FlashCards extends javax.swing.JFrame {
         } else {
             this.QAlabel.setText(QuestionArray[position]);
         }
+        
     }//GEN-LAST:event_RandomButtonActionPerformed
 
     /**
