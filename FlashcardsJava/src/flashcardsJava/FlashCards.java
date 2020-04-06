@@ -204,11 +204,7 @@ public class FlashCards extends javax.swing.JFrame {
     }
 
     private void QAlabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QAlabelMouseClicked
-        // Detects the current state of the card.
-        // Flips the card.
-
         createArrays();
-
         flipThrough();
 
     }//GEN-LAST:event_QAlabelMouseClicked
