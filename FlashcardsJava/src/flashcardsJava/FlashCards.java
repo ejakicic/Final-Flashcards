@@ -28,13 +28,31 @@ public class FlashCards extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        QAlabel = new javax.swing.JLabel();
         NextButton = new javax.swing.JButton();
         BackButton = new javax.swing.JButton();
         LastButton = new javax.swing.JButton();
         FirstButton = new javax.swing.JButton();
+        QAPanel = new javax.swing.JPanel();
+        QAlabel = new javax.swing.JLabel();
+        FlipButton = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        NextButton.setText("-->");
+        NextButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NextButtonActionPerformed(evt);
+            }
+        });
+
+        BackButton.setText("<--");
+
+        LastButton.setText(">>");
+
+        FirstButton.setText("<<");
 
         QAlabel.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         QAlabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -46,45 +64,77 @@ public class FlashCards extends javax.swing.JFrame {
             }
         });
 
-        NextButton.setText("-->");
+        javax.swing.GroupLayout QAPanelLayout = new javax.swing.GroupLayout(QAPanel);
+        QAPanel.setLayout(QAPanelLayout);
+        QAPanelLayout.setHorizontalGroup(
+            QAPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, QAPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(QAlabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        QAPanelLayout.setVerticalGroup(
+            QAPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(QAPanelLayout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addComponent(QAlabel, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
-        BackButton.setText("<--");
+        FlipButton.setText("Flip");
 
-        LastButton.setText(">>");
+        jMenu1.setText("new Card");
 
-        FirstButton.setText("<<");
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem1.setText("New card");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(QAlabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(87, Short.MAX_VALUE)
-                .addComponent(FirstButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BackButton)
-                .addGap(43, 43, 43)
-                .addComponent(NextButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(LastButton)
-                .addGap(52, 52, 52))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(FirstButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BackButton)
+                                .addGap(43, 43, 43)
+                                .addComponent(NextButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(LastButton))
+                            .addComponent(QAPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(70, 70, 70))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(FlipButton)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(QAlabel, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(QAPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(NextButton)
                     .addComponent(BackButton)
                     .addComponent(LastButton)
                     .addComponent(FirstButton))
-                .addGap(45, 45, 45))
+                .addGap(50, 50, 50)
+                .addComponent(FlipButton)
+                .addContainerGap())
         );
 
         pack();
@@ -124,6 +174,15 @@ public class FlashCards extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_QAlabelMouseClicked
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void NextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextButtonActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_NextButtonActionPerformed
 
     public void createArrays() {
         // Will create matching arrays of questions and answers.
@@ -179,8 +238,13 @@ public class FlashCards extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackButton;
     private javax.swing.JButton FirstButton;
+    private javax.swing.JButton FlipButton;
     private javax.swing.JButton LastButton;
     private javax.swing.JButton NextButton;
+    private javax.swing.JPanel QAPanel;
     private javax.swing.JLabel QAlabel;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     // End of variables declaration//GEN-END:variables
 }
