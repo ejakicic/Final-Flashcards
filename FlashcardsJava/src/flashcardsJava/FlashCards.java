@@ -5,6 +5,8 @@
  */
 package flashcardsJava;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author phant
@@ -137,8 +139,9 @@ public class FlashCards extends javax.swing.JFrame {
     // Like the isFlipped attribute of the Card class, this is false if the question is showing.
     static boolean cardState = false;
     static int position = 0;
-    static String[] QuestionArray = new String[5];
-    static String[] AnswerArray = new String[5];
+    // static String[] QuestionArray = new String[5];
+    // static String[] AnswerArray = new String[5];
+    static ArrayList<Card> cardList = new ArrayList<Card>();
 
     private void flipThrough() {
         if (this.answerCheckBox.isSelected()) {
@@ -146,7 +149,7 @@ public class FlashCards extends javax.swing.JFrame {
             if (cardState) {
                 // The answer was showing before the label was clicked.
                 cardState = false;
-                this.QAlabel.setText(QuestionArray[position]);
+                this.QAlabel.setText(cardList.get(position).getFrontInfo());
 
             } else {
                 // The question was showing before the label was clicked.
@@ -155,9 +158,9 @@ public class FlashCards extends javax.swing.JFrame {
                 position++;
                 // If the next card shown would be out of bounds, loop back instead.
                 try {
-                    this.QAlabel.setText(AnswerArray[position]);
+                    this.QAlabel.setText(cardList.get(position).getBackInfo());
                 } catch (ArrayIndexOutOfBoundsException abe) {
-                    this.QAlabel.setText(AnswerArray[0]);
+                    this.QAlabel.setText(cardList.get(0).getBackInfo());
                     position = 0;
                 }// End of try-catch.
 
@@ -173,16 +176,16 @@ public class FlashCards extends javax.swing.JFrame {
 
                 // Using a try-catch to loop back is surprisingly effective.
                 try {
-                    this.QAlabel.setText(QuestionArray[position]);
+                    this.QAlabel.setText(cardList.get(position).getFrontInfo());
                 } catch (ArrayIndexOutOfBoundsException abe) {
-                    this.QAlabel.setText(QuestionArray[0]);
+                    this.QAlabel.setText(cardList.get(0).getBackInfo());
                     position = 0;
                 }// End of try-catch.
 
             } else {
                 // The question was showing before the label was clicked.
                 cardState = true;
-                this.QAlabel.setText(AnswerArray[position]);
+                this.QAlabel.setText(cardList.get(position).getBackInfo());
 
             }// End of cardState if.
         }// End of answerCheckBox if.
@@ -192,13 +195,19 @@ public class FlashCards extends javax.swing.JFrame {
     public void createArrays() {
         // Will create matching arrays of questions and answers.
         // Initialize class variables here.
+        
+        for(int i=0; i<5; i++){
+            cardList.add(new Card());
+        }
 
         // Mike ~ "I'm creating a question and answer array separately for testing purposes. Because Evan gave the cards two sides on their own, you only need one."
+        // Implemented card class
+        // Front of the card is the question, back of the card is the answer
         String testQuestionString = "Question";
         String testAnswerString = "Answer";
-        for (int x = 0; x < 5; x++) {
-            QuestionArray[x] = testQuestionString + Integer.toString(x + 1);
-            AnswerArray[x] = testAnswerString + Integer.toString(x + 1);
+        for (int x = 0; x < cardList.size(); x++) {
+            cardList.get(x).setFrontInfo(testQuestionString + (x+1));
+            cardList.get(x).setBackInfo(testAnswerString + (x+1));
         }
 
     }
@@ -215,16 +224,16 @@ public class FlashCards extends javax.swing.JFrame {
 
     private void NextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextButtonActionPerformed
 
-        if (position == QuestionArray.length - 1) {
+        if (position == cardList.size() - 1) {
             position = 0;
         } else {
             position++;
         }
 
         if (this.answerCheckBox.isSelected()) {
-            this.QAlabel.setText(AnswerArray[position]);
+            this.QAlabel.setText(cardList.get(position).getBackInfo());
         } else {
-            this.QAlabel.setText(QuestionArray[position]);
+            this.QAlabel.setText(cardList.get(position).getFrontInfo());
         }
 
     }//GEN-LAST:event_NextButtonActionPerformed
@@ -232,15 +241,15 @@ public class FlashCards extends javax.swing.JFrame {
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
 
         if (position == 0) {
-            position = QuestionArray.length - 1;
+            position = cardList.size() - 1;
         } else {
             position--;
         }
 
         if (this.answerCheckBox.isSelected()) {
-            this.QAlabel.setText(AnswerArray[position]);
+            this.QAlabel.setText(cardList.get(position).getBackInfo());
         } else {
-            this.QAlabel.setText(QuestionArray[position]);
+            this.QAlabel.setText(cardList.get(position).getFrontInfo());
         }
 
     }//GEN-LAST:event_BackButtonActionPerformed
@@ -250,30 +259,30 @@ public class FlashCards extends javax.swing.JFrame {
         position = 0;
 
         if (this.answerCheckBox.isSelected()) {
-            this.QAlabel.setText(AnswerArray[position]);
+            this.QAlabel.setText(cardList.get(position).getBackInfo());
         } else {
-            this.QAlabel.setText(QuestionArray[position]);
+            this.QAlabel.setText(cardList.get(position).getFrontInfo());
         }
     }//GEN-LAST:event_FirstButtonActionPerformed
 
     private void LastButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LastButtonActionPerformed
 
-        position = QuestionArray.length - 1;
+        position = cardList.size() - 1;
 
         if (this.answerCheckBox.isSelected()) {
-            this.QAlabel.setText(AnswerArray[position]);
+            this.QAlabel.setText(cardList.get(position).getBackInfo());
         } else {
-            this.QAlabel.setText(QuestionArray[position]);
+            this.QAlabel.setText(cardList.get(position).getFrontInfo());
         }
     }//GEN-LAST:event_LastButtonActionPerformed
 
     private void RandomButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RandomButtonActionPerformed
-        position = (int) (Math.random()*QuestionArray.length);
+        position = (int) (Math.random()*cardList.size());
         
         if (this.answerCheckBox.isSelected()) {
-            this.QAlabel.setText(AnswerArray[position]);
+            this.QAlabel.setText(cardList.get(position).getBackInfo());
         } else {
-            this.QAlabel.setText(QuestionArray[position]);
+            this.QAlabel.setText(cardList.get(position).getFrontInfo());
         }
     }//GEN-LAST:event_RandomButtonActionPerformed
 
