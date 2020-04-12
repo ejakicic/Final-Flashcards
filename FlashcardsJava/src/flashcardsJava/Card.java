@@ -53,10 +53,10 @@ public class Card {
     @Override
     public String toString() {
         if(isFlipped){
-            return frontInfo;
+            return backInfo;
         }
         else{
-            return backInfo;
+            return frontInfo;
         }
     }
 }
