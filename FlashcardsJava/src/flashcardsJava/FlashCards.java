@@ -5,8 +5,22 @@
  */
 package flashcardsJava;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import javax.swing.Action;
+=======
+import java.util.logging.Level;
+import java.util.logging.Logger;
+>>>>>>> bec43daa3b4f473b943c5f91ca14cff9f108475f
 
 /**
  *
@@ -22,6 +36,7 @@ public class FlashCards extends javax.swing.JFrame {
         this.setTitle("Flashcards");
         Boolean Markings;
         createArrays();
+        readCards();
     }
 
     /**
@@ -48,6 +63,7 @@ public class FlashCards extends javax.swing.JFrame {
         QAlabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         QAlabel.setText("Question1");
         QAlabel.setToolTipText("");
+        QAlabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         QAlabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 QAlabelMouseClicked(evt);
@@ -97,16 +113,16 @@ public class FlashCards extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(50, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(QAlabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
+                        .addComponent(answerCheckBox)
+                        .addGap(141, 141, 141))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 25, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(QAlabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(FirstButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(BackButton)
@@ -124,6 +140,7 @@ public class FlashCards extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(MarkingCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,9 +171,57 @@ public class FlashCards extends javax.swing.JFrame {
     // static String[] AnswerArray = new String[5];
     static ArrayList<Card> cardList = new ArrayList<Card>();
 
+    static FileSystem fs;
+    static File file;
+    static Path pathToFile;
+    static BufferedReader cardReader;
+    static InputStream cardin = null;
+
+    public void readCards() {
+
+        fs = FileSystems.getDefault();
+        pathToFile = fs.getPath("C:\\Users\\bulba\\OneDrive\\Documents\\GitHub\\Group-2\\Final-Flashcards\\FlashcardsJava\\src\\flashcardsJava\\TestQuestions.txt");
+
+        try {
+
+            cardin = Files.newInputStream(pathToFile);
+            cardReader = new BufferedReader(new InputStreamReader(cardin));
+        } catch (IOException iOException) {
+
+        }
+
+        String line;
+        int lineCounter = 0;
+        int cardCounter = 0;
+
+        try {
+            while ((line = cardReader.readLine()) != null) {
+                lineCounter++;
+                if (lineCounter % 2 != 0) {
+                    cardCounter++;
+                    if (cardList.size() < cardCounter) {
+                        cardList.add(new Card());
+                    }
+                    cardList.get(cardCounter - 1).setFrontInfo("<html>" + line + "</html>");
+                } else {
+                    cardList.get(cardCounter - 1).setBackInfo("<html>" + line + "</html>");
+                }
+            }
+
+        } catch (IOException iOException) {
+
+        }
+
+        try {
+            cardin.close();
+        } catch (IOException ex) {
+
+        }
+
+    }
+
     private void flipThrough() {
         if (this.answerCheckBox.isSelected()) {
-
             if (cardState) {
                 // The answer was showing before the label was clicked.
                 cardState = false;
@@ -170,7 +235,7 @@ public class FlashCards extends javax.swing.JFrame {
                 // If the next card shown would be out of bounds, loop back instead.
                 try {
                     this.QAlabel.setText(cardList.get(position).getBackInfo());
-                } catch (ArrayIndexOutOfBoundsException abe) {
+                } catch (IndexOutOfBoundsException abe) {
                     this.QAlabel.setText(cardList.get(0).getBackInfo());
                     position = 0;
                 }// End of try-catch.
@@ -188,8 +253,8 @@ public class FlashCards extends javax.swing.JFrame {
                 // Using a try-catch to loop back is surprisingly effective.
                 try {
                     this.QAlabel.setText(cardList.get(position).getFrontInfo());
-                } catch (ArrayIndexOutOfBoundsException abe) {
-                    this.QAlabel.setText(cardList.get(0).getBackInfo());
+                } catch (IndexOutOfBoundsException abe) {
+                    this.QAlabel.setText(cardList.get(0).getFrontInfo());
                     position = 0;
                 }// End of try-catch.
 
@@ -206,9 +271,11 @@ public class FlashCards extends javax.swing.JFrame {
     public void createArrays() {
         // Will create matching arrays of questions and answers.
         // Initialize class variables here.
-        
-        for(int i=0; i<5; i++){
-            cardList.add(new Card());
+
+        if (cardList.size() == 0) {
+            for (int i = 0; i < 5; i++) {
+                cardList.add(new Card());
+            }
         }
 
         // Mike ~ "I'm creating a question and answer array separately for testing purposes. Because Evan gave the cards two sides on their own, you only need one."
@@ -217,24 +284,49 @@ public class FlashCards extends javax.swing.JFrame {
         String testQuestionString = "Question";
         String testAnswerString = "Answer";
         for (int x = 0; x < cardList.size(); x++) {
-            cardList.get(x).setFrontInfo(testQuestionString + (x+1));
-            cardList.get(x).setBackInfo(testAnswerString + (x+1));
+            cardList.get(x).setFrontInfo(testQuestionString + (x + 1));
+            cardList.get(x).setBackInfo(testAnswerString + (x + 1));
         }
 
     }
 
     private void QAlabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QAlabelMouseClicked
-        // Detects the current state of the card.
-        // Flips the card.
-
         createArrays();
-
+        readCards();
         flipThrough();
 
     }//GEN-LAST:event_QAlabelMouseClicked
 
-    private void NextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextButtonActionPerformed
+    private void RandomButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RandomButtonActionPerformed
+        readCards();
+        int random;
+        do {
+            random = (int) (Math.random() * cardList.size());
+        } while (random == position);
+        position = random;
 
+        if (this.answerCheckBox.isSelected()) {
+            cardState = true;
+            this.QAlabel.setText(cardList.get(position).getBackInfo());
+        } else {
+            cardState = false;
+            this.QAlabel.setText(cardList.get(position).getFrontInfo());
+        }
+    }//GEN-LAST:event_RandomButtonActionPerformed
+
+    private void FirstButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FirstButtonActionPerformed
+        readCards();
+        position = 0;
+
+        if (this.answerCheckBox.isSelected()) {
+            this.QAlabel.setText(cardList.get(position).getBackInfo());
+        } else {
+            this.QAlabel.setText(cardList.get(position).getFrontInfo());
+        }
+    }//GEN-LAST:event_FirstButtonActionPerformed
+
+    private void NextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextButtonActionPerformed
+        readCards();
         if (position == cardList.size() - 1) {
             position = 0;
         } else {
@@ -253,10 +345,11 @@ public class FlashCards extends javax.swing.JFrame {
         }else{
             
         }
+
     }//GEN-LAST:event_NextButtonActionPerformed
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
-
+        readCards();
         if (position == 0) {
             position = cardList.size() - 1;
         } else {
@@ -268,22 +361,10 @@ public class FlashCards extends javax.swing.JFrame {
         } else {
             this.QAlabel.setText(cardList.get(position).getFrontInfo());
         }
-
     }//GEN-LAST:event_BackButtonActionPerformed
 
-    private void FirstButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FirstButtonActionPerformed
-
-        position = 0;
-
-        if (this.answerCheckBox.isSelected()) {
-            this.QAlabel.setText(cardList.get(position).getBackInfo());
-        } else {
-            this.QAlabel.setText(cardList.get(position).getFrontInfo());
-        }
-    }//GEN-LAST:event_FirstButtonActionPerformed
-
     private void LastButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LastButtonActionPerformed
-
+        readCards();
         position = cardList.size() - 1;
 
         if (this.answerCheckBox.isSelected()) {
@@ -292,16 +373,6 @@ public class FlashCards extends javax.swing.JFrame {
             this.QAlabel.setText(cardList.get(position).getFrontInfo());
         }
     }//GEN-LAST:event_LastButtonActionPerformed
-
-    private void RandomButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RandomButtonActionPerformed
-        position = (int) (Math.random()*cardList.size());
-        
-        if (this.answerCheckBox.isSelected()) {
-            this.QAlabel.setText(cardList.get(position).getBackInfo());
-        } else {
-            this.QAlabel.setText(cardList.get(position).getFrontInfo());
-        }
-    }//GEN-LAST:event_RandomButtonActionPerformed
 
     /**
      * @param args the command line arguments
