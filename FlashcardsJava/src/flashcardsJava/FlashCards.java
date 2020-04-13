@@ -5,6 +5,8 @@
  */
 package flashcardsJava;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author phant
@@ -17,6 +19,7 @@ public class FlashCards extends javax.swing.JFrame {
     public FlashCards() {
         initComponents();
         this.setTitle("Flashcards");
+        createArrays();
     }
 
     /**
@@ -33,6 +36,8 @@ public class FlashCards extends javax.swing.JFrame {
         BackButton = new javax.swing.JButton();
         LastButton = new javax.swing.JButton();
         FirstButton = new javax.swing.JButton();
+        answerCheckBox = new javax.swing.JCheckBox();
+        RandomButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,31 +52,69 @@ public class FlashCards extends javax.swing.JFrame {
         });
 
         NextButton.setText("-->");
+        NextButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NextButtonActionPerformed(evt);
+            }
+        });
 
         BackButton.setText("<--");
+        BackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackButtonActionPerformed(evt);
+            }
+        });
 
         LastButton.setText(">>");
+        LastButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LastButtonActionPerformed(evt);
+            }
+        });
 
         FirstButton.setText("<<");
+        FirstButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FirstButtonActionPerformed(evt);
+            }
+        });
+
+        answerCheckBox.setText("Show Answers");
+
+        RandomButton.setText("Random");
+        RandomButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RandomButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(QAlabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(87, Short.MAX_VALUE)
-                .addComponent(FirstButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BackButton)
-                .addGap(43, 43, 43)
-                .addComponent(NextButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(LastButton)
-                .addGap(52, 52, 52))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(QAlabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 25, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(FirstButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BackButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(RandomButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(NextButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(LastButton)
+                                .addGap(52, 52, 52))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(answerCheckBox)
+                                .addGap(141, 141, 141))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -83,8 +126,11 @@ public class FlashCards extends javax.swing.JFrame {
                     .addComponent(NextButton)
                     .addComponent(BackButton)
                     .addComponent(LastButton)
-                    .addComponent(FirstButton))
-                .addGap(45, 45, 45))
+                    .addComponent(FirstButton)
+                    .addComponent(RandomButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(answerCheckBox)
+                .addGap(17, 17, 17))
         );
 
         pack();
@@ -93,8 +139,78 @@ public class FlashCards extends javax.swing.JFrame {
     // Like the isFlipped attribute of the Card class, this is false if the question is showing.
     static boolean cardState = false;
     static int position = 0;
-    static String[] QuestionArray = new String[5];
-    static String[] AnswerArray = new String[5];
+    // static String[] QuestionArray = new String[5];
+    // static String[] AnswerArray = new String[5];
+    static ArrayList<Card> cardList = new ArrayList<Card>();
+
+    private void flipThrough() {
+        if (this.answerCheckBox.isSelected()) {
+
+            if (cardState) {
+                // The answer was showing before the label was clicked.
+                cardState = false;
+                this.QAlabel.setText(cardList.get(position).getFrontInfo());
+
+            } else {
+                // The question was showing before the label was clicked.
+                cardState = true;
+                //Cycle to the next card if it changes back to the answer.
+                position++;
+                // If the next card shown would be out of bounds, loop back instead.
+                try {
+                    this.QAlabel.setText(cardList.get(position).getBackInfo());
+                } catch (ArrayIndexOutOfBoundsException abe) {
+                    this.QAlabel.setText(cardList.get(0).getBackInfo());
+                    position = 0;
+                }// End of try-catch.
+
+            }// End of cardState if.
+
+        } else {
+
+            if (cardState) {
+                // The answer was showing before the label was clicked.
+                cardState = false;
+                // When switching back to a question, cycle to the next card.
+                position++;
+
+                // Using a try-catch to loop back is surprisingly effective.
+                try {
+                    this.QAlabel.setText(cardList.get(position).getFrontInfo());
+                } catch (ArrayIndexOutOfBoundsException abe) {
+                    this.QAlabel.setText(cardList.get(0).getBackInfo());
+                    position = 0;
+                }// End of try-catch.
+
+            } else {
+                // The question was showing before the label was clicked.
+                cardState = true;
+                this.QAlabel.setText(cardList.get(position).getBackInfo());
+
+            }// End of cardState if.
+        }// End of answerCheckBox if.
+
+    }
+
+    public void createArrays() {
+        // Will create matching arrays of questions and answers.
+        // Initialize class variables here.
+        
+        for(int i=0; i<5; i++){
+            cardList.add(new Card());
+        }
+
+        // Mike ~ "I'm creating a question and answer array separately for testing purposes. Because Evan gave the cards two sides on their own, you only need one."
+        // Implemented card class
+        // Front of the card is the question, back of the card is the answer
+        String testQuestionString = "Question";
+        String testAnswerString = "Answer";
+        for (int x = 0; x < cardList.size(); x++) {
+            cardList.get(x).setFrontInfo(testQuestionString + (x+1));
+            cardList.get(x).setBackInfo(testAnswerString + (x+1));
+        }
+
+    }
 
     private void QAlabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QAlabelMouseClicked
         // Detects the current state of the card.
@@ -102,42 +218,73 @@ public class FlashCards extends javax.swing.JFrame {
 
         createArrays();
 
-        if (cardState) {
-            // The answer was showing before the label was clicked.
-            cardState = false;
-            // When switching back to a question, cycle to the next card.
-            position++;
-            
-            // Using a try-catch to loop back is surprisingly effective.
-            try {
-                this.QAlabel.setText(QuestionArray[position]);
-            } catch (ArrayIndexOutOfBoundsException abe) {
-                this.QAlabel.setText(QuestionArray[0]);
-                position = 0;
-            }// End of try-catch.
-
-        } else {
-            // The question was showing before the label was clicked.
-            cardState = true;
-            this.QAlabel.setText(AnswerArray[position]);
-
-        }
+        flipThrough();
 
     }//GEN-LAST:event_QAlabelMouseClicked
 
-    public void createArrays() {
-        // Will create matching arrays of questions and answers.
-        // Initialize class variables here.
+    private void NextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextButtonActionPerformed
 
-        // Mike ~ "I'm creating a question and answer array separately for testing purposes. Because Evan gave the cards two sides on their own, you only need one."
-        String testQuestionString = "Question";
-        String testAnswerString = "Answer";
-        for (int x = 0; x < 5; x++) {
-            QuestionArray[x] = testQuestionString + Integer.toString(x + 1);
-            AnswerArray[x] = testAnswerString + Integer.toString(x + 1);
+        if (position == cardList.size() - 1) {
+            position = 0;
+        } else {
+            position++;
         }
 
-    }
+        if (this.answerCheckBox.isSelected()) {
+            this.QAlabel.setText(cardList.get(position).getBackInfo());
+        } else {
+            this.QAlabel.setText(cardList.get(position).getFrontInfo());
+        }
+
+    }//GEN-LAST:event_NextButtonActionPerformed
+
+    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
+
+        if (position == 0) {
+            position = cardList.size() - 1;
+        } else {
+            position--;
+        }
+
+        if (this.answerCheckBox.isSelected()) {
+            this.QAlabel.setText(cardList.get(position).getBackInfo());
+        } else {
+            this.QAlabel.setText(cardList.get(position).getFrontInfo());
+        }
+
+    }//GEN-LAST:event_BackButtonActionPerformed
+
+    private void FirstButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FirstButtonActionPerformed
+
+        position = 0;
+
+        if (this.answerCheckBox.isSelected()) {
+            this.QAlabel.setText(cardList.get(position).getBackInfo());
+        } else {
+            this.QAlabel.setText(cardList.get(position).getFrontInfo());
+        }
+    }//GEN-LAST:event_FirstButtonActionPerformed
+
+    private void LastButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LastButtonActionPerformed
+
+        position = cardList.size() - 1;
+
+        if (this.answerCheckBox.isSelected()) {
+            this.QAlabel.setText(cardList.get(position).getBackInfo());
+        } else {
+            this.QAlabel.setText(cardList.get(position).getFrontInfo());
+        }
+    }//GEN-LAST:event_LastButtonActionPerformed
+
+    private void RandomButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RandomButtonActionPerformed
+        position = (int) (Math.random()*cardList.size());
+        
+        if (this.answerCheckBox.isSelected()) {
+            this.QAlabel.setText(cardList.get(position).getBackInfo());
+        } else {
+            this.QAlabel.setText(cardList.get(position).getFrontInfo());
+        }
+    }//GEN-LAST:event_RandomButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -153,16 +300,24 @@ public class FlashCards extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FlashCards.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FlashCards.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FlashCards.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FlashCards.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FlashCards.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FlashCards.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FlashCards.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FlashCards.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -170,7 +325,7 @@ public class FlashCards extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new FlashCards().setVisible(true);
-                
+
             }
         });
     }
@@ -182,5 +337,7 @@ public class FlashCards extends javax.swing.JFrame {
     private javax.swing.JButton LastButton;
     private javax.swing.JButton NextButton;
     private javax.swing.JLabel QAlabel;
+    private javax.swing.JButton RandomButton;
+    private javax.swing.JCheckBox answerCheckBox;
     // End of variables declaration//GEN-END:variables
 }
