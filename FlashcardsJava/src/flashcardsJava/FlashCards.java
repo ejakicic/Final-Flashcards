@@ -30,6 +30,7 @@ public class FlashCards extends javax.swing.JFrame {
         this.setTitle("Flashcards");
         createArrays();
         readCards();
+        this.QAlabel.setText(cardList.get(0).getFrontInfo());
     }
 
     /**
@@ -104,25 +105,24 @@ public class FlashCards extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(answerCheckBox)
-                        .addGap(141, 141, 141))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(QAlabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(FirstButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(BackButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(RandomButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(NextButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(LastButton)))
-                        .addGap(50, 50, 50))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(QAlabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(FirstButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BackButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(RandomButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(NextButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LastButton)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(answerCheckBox)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -269,6 +269,27 @@ public class FlashCards extends javax.swing.JFrame {
         }
 
     }
+    
+    private void WriteButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        if (this.QuestionField.getText().isEmpty() || this.AnswerField.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "There must be both a question and an answer", "Input Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Successfully written to cards", "Success", JOptionPane.INFORMATION_MESSAGE);
+            String fileName = "C:\\Users\\bulba\\OneDrive\\Documents\\GitHub\\Group-2\\Final-Flashcards\\FlashcardsJava\\src\\flashcardsJava\\TestQuestions.txt";
+            File file = new File(fileName);
+            try {
+                FileWriter fileOut = new FileWriter(file, true);
+                fileOut.write("\n" + this.QuestionField.getText());
+                fileOut.write("\n" + this.AnswerField.getText());
+                fileOut.flush();
+                fileOut.close();
+            } catch (IOException iOException) {
+                System.out.println("Cannot write");
+                System.exit(1);
+            }
+        }
+    }
+    
 
     private void QAlabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QAlabelMouseClicked
         createArrays();
