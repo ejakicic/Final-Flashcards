@@ -144,12 +144,11 @@ public class FlashCards extends javax.swing.JFrame {
     static ArrayList<Card> cardList = new ArrayList<Card>();
 
     public void readCards() {
-        
+
     }
-    
+
     private void flipThrough() {
         if (this.answerCheckBox.isSelected()) {
-
             if (cardState) {
                 // The answer was showing before the label was clicked.
                 cardState = false;
@@ -199,9 +198,11 @@ public class FlashCards extends javax.swing.JFrame {
     public void createArrays() {
         // Will create matching arrays of questions and answers.
         // Initialize class variables here.
-        
-        for(int i=0; i<5; i++){
-            cardList.add(new Card());
+
+        if (cardList.size() == 0) {
+            for (int i = 0; i < 5; i++) {
+                cardList.add(new Card());
+            }
         }
 
         // Mike ~ "I'm creating a question and answer array separately for testing purposes. Because Evan gave the cards two sides on their own, you only need one."
@@ -210,8 +211,8 @@ public class FlashCards extends javax.swing.JFrame {
         String testQuestionString = "Question";
         String testAnswerString = "Answer";
         for (int x = 0; x < cardList.size(); x++) {
-            cardList.get(x).setFrontInfo(testQuestionString + (x+1));
-            cardList.get(x).setBackInfo(testAnswerString + (x+1));
+            cardList.get(x).setFrontInfo(testQuestionString + (x + 1));
+            cardList.get(x).setBackInfo(testAnswerString + (x + 1));
         }
 
     }
@@ -263,7 +264,7 @@ public class FlashCards extends javax.swing.JFrame {
         } else {
             this.QAlabel.setText(cardList.get(position).getFrontInfo());
         }
-        
+
     }//GEN-LAST:event_FirstButtonActionPerformed
 
     private void LastButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LastButtonActionPerformed
@@ -275,18 +276,18 @@ public class FlashCards extends javax.swing.JFrame {
         } else {
             this.QAlabel.setText(cardList.get(position).getFrontInfo());
         }
-        
+
     }//GEN-LAST:event_LastButtonActionPerformed
 
     private void RandomButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RandomButtonActionPerformed
-        position = (int) (Math.random()*cardList.size());
-        
+        position = (int) (Math.random() * cardList.size());
+
         if (this.answerCheckBox.isSelected()) {
             this.QAlabel.setText(cardList.get(position).getBackInfo());
         } else {
             this.QAlabel.setText(cardList.get(position).getFrontInfo());
         }
-        
+
     }//GEN-LAST:event_RandomButtonActionPerformed
 
     /**
