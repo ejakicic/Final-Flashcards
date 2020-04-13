@@ -53,7 +53,7 @@ public class FlashCards extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        QAlabel.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        QAlabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         QAlabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         QAlabel.setText("Question1");
         QAlabel.setToolTipText("");
