@@ -7,7 +7,6 @@ package flashcardsJava;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -16,7 +15,8 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -33,7 +33,6 @@ public class FlashCards extends javax.swing.JFrame {
         Boolean Markings;
         createArrays();
         readCards();
-        this.QAlabel.setText(cardList.get(0).getFrontInfo());
     }
 
     /**
@@ -45,89 +44,27 @@ public class FlashCards extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        QuestionField = new javax.swing.JTextField();
-        AnswerField = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        WriteButton = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
+        QAlabel = new javax.swing.JLabel();
         NextButton = new javax.swing.JButton();
         BackButton = new javax.swing.JButton();
         LastButton = new javax.swing.JButton();
         FirstButton = new javax.swing.JButton();
-        RandomButton = new javax.swing.JButton();
-
         answerCheckBox = new javax.swing.JCheckBox();
-        QAlabel = new javax.swing.JLabel();
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
+        RandomButton = new javax.swing.JButton();
         MarkingCheckBox = new javax.swing.JCheckBox();
-
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Add your own Cards!");
-
-        jLabel2.setText("Question");
-
-        jLabel3.setText("Answer");
-
-        WriteButton.setText("Write Card");
-        WriteButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                WriteButtonActionPerformed(evt);
+        QAlabel.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        QAlabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        QAlabel.setText("Question1");
+        QAlabel.setToolTipText("");
+        QAlabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        QAlabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                QAlabelMouseClicked(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(WriteButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(AnswerField)
-                            .addComponent(QuestionField, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(16, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(QuestionField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AnswerField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(WriteButton)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
 
         NextButton.setText("-->");
         NextButton.addActionListener(new java.awt.event.ActionListener() {
@@ -157,6 +94,8 @@ public class FlashCards extends javax.swing.JFrame {
             }
         });
 
+        answerCheckBox.setText("Show Answers");
+
         RandomButton.setText("Random");
         RandomButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -164,73 +103,12 @@ public class FlashCards extends javax.swing.JFrame {
             }
         });
 
-
-        answerCheckBox.setText("Show Answers");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(FirstButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BackButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(RandomButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(NextButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(LastButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(answerCheckBox)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(NextButton)
-                    .addComponent(BackButton)
-                    .addComponent(LastButton)
-                    .addComponent(FirstButton)
-                    .addComponent(RandomButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(answerCheckBox)
-                .addContainerGap())
-        );
-
-        QAlabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        QAlabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        QAlabel.setToolTipText("");
-        QAlabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        QAlabel.setPreferredSize(new java.awt.Dimension(200, 0));
-        QAlabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                QAlabelMouseClicked(evt);
-            }
-        });
-
         MarkingCheckBox.setText("Mark it");
-
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(QAlabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(20, 20, 20)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(50, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -259,21 +137,10 @@ public class FlashCards extends javax.swing.JFrame {
                 .addComponent(MarkingCheckBox)
                 .addContainerGap())
 
-
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(QAlabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
                 .addGap(11, 11, 11)
                 .addComponent(MarkingCheckBox)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -289,8 +156,6 @@ public class FlashCards extends javax.swing.JFrame {
                 .addComponent(answerCheckBox)
                 .addGap(17, 17, 17))
         );
-
-        QAlabel.getAccessibleContext().setAccessibleName("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -314,6 +179,7 @@ public class FlashCards extends javax.swing.JFrame {
         pathToFile = fs.getPath("C:\\Users\\bulba\\OneDrive\\Documents\\GitHub\\Group-2\\Final-Flashcards\\FlashcardsJava\\src\\flashcardsJava\\TestQuestions.txt");
 
         try {
+
             cardin = Files.newInputStream(pathToFile);
             cardReader = new BufferedReader(new InputStreamReader(cardin));
         } catch (IOException iOException) {
@@ -400,6 +266,7 @@ public class FlashCards extends javax.swing.JFrame {
 
     public void createArrays() {
         // Will create matching arrays of questions and answers.
+        // Initialize class variables here.
 
         if (cardList.size() == 0) {
             for (int i = 0; i < 5; i++) {
@@ -407,6 +274,7 @@ public class FlashCards extends javax.swing.JFrame {
             }
         }
 
+        // Mike ~ "I'm creating a question and answer array separately for testing purposes. Because Evan gave the cards two sides on their own, you only need one."
         // Implemented card class
         // Front of the card is the question, back of the card is the answer
         String testQuestionString = "Question";
@@ -501,26 +369,6 @@ public class FlashCards extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_LastButtonActionPerformed
 
-    private void WriteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WriteButtonActionPerformed
-        if (this.QuestionField.getText().isEmpty() || this.AnswerField.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "There must be both a question and an answer", "Input Error", JOptionPane.ERROR_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(this, "Successfully written to cards", "Success", JOptionPane.INFORMATION_MESSAGE);
-            String fileName = "C:\\Users\\bulba\\OneDrive\\Documents\\GitHub\\Group-2\\Final-Flashcards\\FlashcardsJava\\src\\flashcardsJava\\TestQuestions.txt";
-            File file = new File(fileName);
-            try {
-                FileWriter fileOut = new FileWriter(file, true);
-                fileOut.write("\n" + this.QuestionField.getText());
-                fileOut.write("\n" + this.AnswerField.getText());
-                fileOut.flush();
-                fileOut.close();
-            } catch (IOException iOException) {
-                System.out.println("Cannot write");
-                System.exit(1);
-            }
-        }
-    }//GEN-LAST:event_WriteButtonActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -567,22 +415,13 @@ public class FlashCards extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField AnswerField;
     private javax.swing.JButton BackButton;
     private javax.swing.JButton FirstButton;
     private javax.swing.JButton LastButton;
     private javax.swing.JCheckBox MarkingCheckBox;
     private javax.swing.JButton NextButton;
     private javax.swing.JLabel QAlabel;
-    private javax.swing.JTextField QuestionField;
     private javax.swing.JButton RandomButton;
-    private javax.swing.JButton WriteButton;
     private javax.swing.JCheckBox answerCheckBox;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
 }
