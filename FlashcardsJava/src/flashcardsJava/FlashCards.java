@@ -6,6 +6,7 @@
 package flashcardsJava;
 
 import java.util.ArrayList;
+import javax.swing.Action;
 
 /**
  *
@@ -121,7 +122,7 @@ public class FlashCards extends javax.swing.JFrame {
                                 .addGap(141, 141, 141))))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(MarkingCheckBox)
+                .addComponent(MarkingCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -247,9 +248,10 @@ public class FlashCards extends javax.swing.JFrame {
         }
 
         if (this.MarkingCheckBox.isSelected()){
-            
+            ArrayList<Card> markedCards = new ArrayList<Card>();
+            markedCards.add(cardList.get(position));
         }else{
-            System.out.println("The question was not saved");
+            
         }
     }//GEN-LAST:event_NextButtonActionPerformed
 
