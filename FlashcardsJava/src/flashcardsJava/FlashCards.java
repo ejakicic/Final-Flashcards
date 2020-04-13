@@ -30,6 +30,7 @@ public class FlashCards extends javax.swing.JFrame {
     public FlashCards() {
         initComponents();
         this.setTitle("Flashcards");
+        Boolean Markings;
         createArrays();
         readCards();
     }
@@ -50,6 +51,7 @@ public class FlashCards extends javax.swing.JFrame {
         FirstButton = new javax.swing.JButton();
         answerCheckBox = new javax.swing.JCheckBox();
         RandomButton = new javax.swing.JButton();
+        MarkingCheckBox = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -101,6 +103,8 @@ public class FlashCards extends javax.swing.JFrame {
             }
         });
 
+        MarkingCheckBox.setText("Mark it");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -123,13 +127,23 @@ public class FlashCards extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(NextButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(LastButton)))
-                        .addGap(50, 50, 50))))
+                                .addComponent(LastButton)
+                                .addGap(52, 52, 52))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(answerCheckBox)
+                                .addGap(141, 141, 141))))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(MarkingCheckBox)
+                .addContainerGap())
+
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
+                .addGap(11, 11, 11)
+                .addComponent(MarkingCheckBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(QAlabel, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -320,6 +334,13 @@ public class FlashCards extends javax.swing.JFrame {
         } else {
             this.QAlabel.setText(cardList.get(position).getFrontInfo());
         }
+
+        if (this.MarkingCheckBox.isSelected()){
+            
+        }else{
+            System.out.println("The question was not saved");
+        }
+
     }//GEN-LAST:event_NextButtonActionPerformed
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
@@ -397,6 +418,7 @@ public class FlashCards extends javax.swing.JFrame {
     private javax.swing.JButton BackButton;
     private javax.swing.JButton FirstButton;
     private javax.swing.JButton LastButton;
+    private javax.swing.JCheckBox MarkingCheckBox;
     private javax.swing.JButton NextButton;
     private javax.swing.JLabel QAlabel;
     private javax.swing.JButton RandomButton;
