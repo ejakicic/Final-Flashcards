@@ -75,9 +75,12 @@ public class FlashCards extends javax.swing.JFrame {
         });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         NextButton.setBackground(new java.awt.Color(255, 51, 51));
         NextButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 =======
+=======
+>>>>>>> 49b5bd63d3de05cd12df654e96ee4fbfeb15fa13
         jLabel1.setText("Write your own questions!");
 
         WriteButton.setText("Write");
@@ -127,6 +130,9 @@ public class FlashCards extends javax.swing.JFrame {
                 .addContainerGap(44, Short.MAX_VALUE))
         );
 
+<<<<<<< HEAD
+>>>>>>> 49b5bd63d3de05cd12df654e96ee4fbfeb15fa13
+=======
 >>>>>>> 49b5bd63d3de05cd12df654e96ee4fbfeb15fa13
         NextButton.setText("-->");
         NextButton.addActionListener(new java.awt.event.ActionListener() {
@@ -175,9 +181,12 @@ public class FlashCards extends javax.swing.JFrame {
         });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         MarkingCheckBox.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         MarkingCheckBox.setText("Mark It!");
 =======
+=======
+>>>>>>> 49b5bd63d3de05cd12df654e96ee4fbfeb15fa13
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -213,12 +222,16 @@ public class FlashCards extends javax.swing.JFrame {
                 .addComponent(answerCheckBox)
                 .addContainerGap(28, Short.MAX_VALUE))
         );
+<<<<<<< HEAD
+>>>>>>> 49b5bd63d3de05cd12df654e96ee4fbfeb15fa13
+=======
 >>>>>>> 49b5bd63d3de05cd12df654e96ee4fbfeb15fa13
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
 <<<<<<< HEAD
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(36, Short.MAX_VALUE)
@@ -245,6 +258,17 @@ public class FlashCards extends javax.swing.JFrame {
                                         .addComponent(LastButton)))))
                         .addGap(50, 50, 50))))
 =======
+=======
+
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(QAlabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(108, Short.MAX_VALUE))
+>>>>>>> 49b5bd63d3de05cd12df654e96ee4fbfeb15fa13
 
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -261,6 +285,7 @@ public class FlashCards extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
 <<<<<<< HEAD
+<<<<<<< HEAD
                 .addGap(11, 11, 11)
                 .addComponent(MarkingCheckBox)
                 .addGap(9, 9, 9)
@@ -276,12 +301,17 @@ public class FlashCards extends javax.swing.JFrame {
                 .addComponent(answerCheckBox)
                 .addGap(17, 17, 17))
 =======
+=======
+>>>>>>> 49b5bd63d3de05cd12df654e96ee4fbfeb15fa13
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(QAlabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+<<<<<<< HEAD
+>>>>>>> 49b5bd63d3de05cd12df654e96ee4fbfeb15fa13
+=======
 >>>>>>> 49b5bd63d3de05cd12df654e96ee4fbfeb15fa13
         );
 
