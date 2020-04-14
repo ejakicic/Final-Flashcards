@@ -7,6 +7,7 @@ package flashcardsJava;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -15,8 +16,7 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -32,6 +32,7 @@ public class FlashCards extends javax.swing.JFrame {
         this.setTitle("Flashcards");
         createArrays();
         readCards();
+        this.QAlabel.setText(cardList.get(0).getFrontInfo());
     }
 
     /**
@@ -44,6 +45,14 @@ public class FlashCards extends javax.swing.JFrame {
     private void initComponents() {
 
         QAlabel = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        WriteButton = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        AnswerField = new javax.swing.JTextField();
+        QuestionField = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
         NextButton = new javax.swing.JButton();
         BackButton = new javax.swing.JButton();
         LastButton = new javax.swing.JButton();
@@ -65,6 +74,60 @@ public class FlashCards extends javax.swing.JFrame {
             }
         });
 
+<<<<<<< HEAD
+        NextButton.setBackground(new java.awt.Color(255, 51, 51));
+        NextButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+=======
+        jLabel1.setText("Write your own questions!");
+
+        WriteButton.setText("Write");
+
+        jLabel2.setText("Question");
+
+        jLabel3.setText("Answer");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(WriteButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(AnswerField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(QuestionField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(83, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addContainerGap(83, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(QuestionField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(AnswerField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(WriteButton)
+                .addContainerGap(44, Short.MAX_VALUE))
+        );
+
+>>>>>>> 49b5bd63d3de05cd12df654e96ee4fbfeb15fa13
         NextButton.setText("-->");
         NextButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,6 +135,8 @@ public class FlashCards extends javax.swing.JFrame {
             }
         });
 
+        BackButton.setBackground(new java.awt.Color(255, 51, 51));
+        BackButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         BackButton.setText("<--");
         BackButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,6 +144,8 @@ public class FlashCards extends javax.swing.JFrame {
             }
         });
 
+        LastButton.setBackground(new java.awt.Color(255, 51, 51));
+        LastButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         LastButton.setText(">>");
         LastButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,6 +153,8 @@ public class FlashCards extends javax.swing.JFrame {
             }
         });
 
+        FirstButton.setBackground(new java.awt.Color(255, 51, 51));
+        FirstButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         FirstButton.setText("<<");
         FirstButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,8 +162,11 @@ public class FlashCards extends javax.swing.JFrame {
             }
         });
 
+        answerCheckBox.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         answerCheckBox.setText("Show Answers");
 
+        RandomButton.setBackground(new java.awt.Color(255, 51, 51));
+        RandomButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         RandomButton.setText("Random");
         RandomButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,45 +174,98 @@ public class FlashCards extends javax.swing.JFrame {
             }
         });
 
+<<<<<<< HEAD
+        MarkingCheckBox.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         MarkingCheckBox.setText("Mark It!");
+=======
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(FirstButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BackButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(RandomButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(NextButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(LastButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(answerCheckBox)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(NextButton)
+                    .addComponent(BackButton)
+                    .addComponent(LastButton)
+                    .addComponent(FirstButton)
+                    .addComponent(RandomButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(answerCheckBox)
+                .addContainerGap(28, Short.MAX_VALUE))
+        );
+>>>>>>> 49b5bd63d3de05cd12df654e96ee4fbfeb15fa13
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
+                .addContainerGap(36, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(answerCheckBox)
                         .addGap(141, 141, 141))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(QAlabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(QAlabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(FirstButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(BackButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(RandomButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(NextButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(LastButton)))
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(MarkingCheckBox)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(FirstButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(BackButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(RandomButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(NextButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(LastButton)))))
                         .addGap(50, 50, 50))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(MarkingCheckBox)
-                .addContainerGap())
+=======
+
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(QAlabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(108, Short.MAX_VALUE))
+
+>>>>>>> 49b5bd63d3de05cd12df654e96ee4fbfeb15fa13
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+<<<<<<< HEAD
+                .addGap(11, 11, 11)
                 .addComponent(MarkingCheckBox)
-                .addGap(5, 5, 5)
-                .addComponent(QAlabel, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(9, 9, 9)
+                .addComponent(QAlabel, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(NextButton)
                     .addComponent(BackButton)
@@ -150,6 +275,14 @@ public class FlashCards extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(answerCheckBox)
                 .addGap(17, 17, 17))
+=======
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(QAlabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+>>>>>>> 49b5bd63d3de05cd12df654e96ee4fbfeb15fa13
         );
 
         pack();
@@ -280,6 +413,27 @@ public class FlashCards extends javax.swing.JFrame {
         }
 
     }
+    
+    private void WriteButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        if (this.QuestionField.getText().isEmpty() || this.AnswerField.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "There must be both a question and an answer", "Input Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Successfully written to cards", "Success", JOptionPane.INFORMATION_MESSAGE);
+            String fileName = "C:\\Users\\bulba\\OneDrive\\Documents\\GitHub\\Group-2\\Final-Flashcards\\FlashcardsJava\\src\\flashcardsJava\\TestQuestions.txt";
+            File file = new File(fileName);
+            try {
+                FileWriter fileOut = new FileWriter(file, true);
+                fileOut.write("\n" + this.QuestionField.getText());
+                fileOut.write("\n" + this.AnswerField.getText());
+                fileOut.flush();
+                fileOut.close();
+            } catch (IOException iOException) {
+                System.out.println("Cannot write");
+                System.exit(1);
+            }
+        }
+    }
+    
 
     private void QAlabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QAlabelMouseClicked
         createArrays();
@@ -308,7 +462,7 @@ public class FlashCards extends javax.swing.JFrame {
             ArrayList<Card> markedCards = new ArrayList<Card>();
             markedCards.add(cardList.get(position));
         }else{
-            markedCards.remove(cardList.get(position));
+            
         }
     }//GEN-LAST:event_RandomButtonActionPerformed
 
@@ -336,7 +490,6 @@ public class FlashCards extends javax.swing.JFrame {
         } else {
             this.QAlabel.setText(cardList.get(position).getFrontInfo());
         }
-
     }//GEN-LAST:event_NextButtonActionPerformed
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
@@ -411,13 +564,21 @@ public class FlashCards extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField AnswerField;
     private javax.swing.JButton BackButton;
     private javax.swing.JButton FirstButton;
     private javax.swing.JButton LastButton;
     private javax.swing.JCheckBox MarkingCheckBox;
     private javax.swing.JButton NextButton;
     private javax.swing.JLabel QAlabel;
+    private javax.swing.JTextField QuestionField;
     private javax.swing.JButton RandomButton;
+    private javax.swing.JButton WriteButton;
     private javax.swing.JCheckBox answerCheckBox;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
 }
