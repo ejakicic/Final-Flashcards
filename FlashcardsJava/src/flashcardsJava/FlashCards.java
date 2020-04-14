@@ -288,7 +288,7 @@ public class FlashCards extends javax.swing.JFrame {
     public void readCards() {
 
         fs = FileSystems.getDefault();
-        pathToFile = fs.getPath("C:\\Users\\bulba\\OneDrive\\Documents\\GitHub\\Group-2\\Final-Flashcards\\FlashcardsJava\\src\\flashcardsJava\\TestQuestions.txt");
+        pathToFile = fs.getPath("Downloads\\Final-Flashcards-master\\Final-Flashcards-master\\FlashcardsJava\\src\\flashcardsJava\\TestQuestions.txt");
 
         try {
 
@@ -460,7 +460,7 @@ public class FlashCards extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "There must be both a question and an answer", "Input Error", JOptionPane.ERROR_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(this, "Successfully written to cards", "Success", JOptionPane.INFORMATION_MESSAGE);
-            String fileName = "C:\\Users\\bulba\\OneDrive\\Documents\\GitHub\\Group-2\\Final-Flashcards\\FlashcardsJava\\src\\flashcardsJava\\TestQuestions.txt";
+            String fileName = "Downloads\\Final-Flashcards-master\\Final-Flashcards-master\\FlashcardsJava\\src\\flashcardsJava\\TestQuestions.txt";
             File file = new File(fileName);
             try {
                 FileWriter fileOut = new FileWriter(file, true);
