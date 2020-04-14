@@ -16,6 +16,7 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Collections;
 import javax.swing.JOptionPane;
 
 /**
@@ -59,11 +60,12 @@ public class FlashCards extends javax.swing.JFrame {
         FirstButton = new javax.swing.JButton();
         answerCheckBox = new javax.swing.JCheckBox();
         RandomButton = new javax.swing.JButton();
-        MarkingCheckBox = new javax.swing.JCheckBox();
+        MarkCheckBox = new javax.swing.JCheckBox();
+        MarkedRadioButton = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        QAlabel.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        QAlabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         QAlabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         QAlabel.setText("Question1");
         QAlabel.setToolTipText("");
@@ -74,20 +76,22 @@ public class FlashCards extends javax.swing.JFrame {
             }
         });
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-        NextButton.setBackground(new java.awt.Color(255, 51, 51));
-        NextButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-=======
-=======
->>>>>>> 49b5bd63d3de05cd12df654e96ee4fbfeb15fa13
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Write your own questions!");
 
+        WriteButton.setBackground(new java.awt.Color(255, 51, 51));
+        WriteButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         WriteButton.setText("Write");
 
-        jLabel2.setText("Question");
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setText("Question:");
 
-        jLabel3.setText("Answer");
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel3.setText("Answer:");
+
+        AnswerField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+
+        QuestionField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -102,15 +106,15 @@ public class FlashCards extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(AnswerField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(QuestionField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(QuestionField, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                    .addComponent(AnswerField))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(83, Short.MAX_VALUE)
+                .addContainerGap(38, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,13 +131,11 @@ public class FlashCards extends javax.swing.JFrame {
                     .addComponent(AnswerField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(WriteButton)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-<<<<<<< HEAD
->>>>>>> 49b5bd63d3de05cd12df654e96ee4fbfeb15fa13
-=======
->>>>>>> 49b5bd63d3de05cd12df654e96ee4fbfeb15fa13
+        NextButton.setBackground(new java.awt.Color(255, 51, 51));
+        NextButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         NextButton.setText("-->");
         NextButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,7 +144,7 @@ public class FlashCards extends javax.swing.JFrame {
         });
 
         BackButton.setBackground(new java.awt.Color(255, 51, 51));
-        BackButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        BackButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         BackButton.setText("<--");
         BackButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,7 +153,7 @@ public class FlashCards extends javax.swing.JFrame {
         });
 
         LastButton.setBackground(new java.awt.Color(255, 51, 51));
-        LastButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        LastButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         LastButton.setText(">>");
         LastButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,7 +162,7 @@ public class FlashCards extends javax.swing.JFrame {
         });
 
         FirstButton.setBackground(new java.awt.Color(255, 51, 51));
-        FirstButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        FirstButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         FirstButton.setText("<<");
         FirstButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -168,11 +170,11 @@ public class FlashCards extends javax.swing.JFrame {
             }
         });
 
-        answerCheckBox.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        answerCheckBox.setFont(new java.awt.Font("Tahoma", 3, 13)); // NOI18N
         answerCheckBox.setText("Show Answers");
 
         RandomButton.setBackground(new java.awt.Color(255, 51, 51));
-        RandomButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        RandomButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         RandomButton.setText("Random");
         RandomButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -180,33 +182,46 @@ public class FlashCards extends javax.swing.JFrame {
             }
         });
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-        MarkingCheckBox.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        MarkingCheckBox.setText("Mark It!");
-=======
-=======
->>>>>>> 49b5bd63d3de05cd12df654e96ee4fbfeb15fa13
+        MarkCheckBox.setFont(new java.awt.Font("Tahoma", 3, 13)); // NOI18N
+        MarkCheckBox.setText("Mark Card");
+        MarkCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MarkCheckBoxActionPerformed(evt);
+            }
+        });
+
+        MarkedRadioButton.setFont(new java.awt.Font("Tahoma", 3, 13)); // NOI18N
+        MarkedRadioButton.setText("Marked Cards");
+        MarkedRadioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MarkedRadioButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(FirstButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BackButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(RandomButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(NextButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(LastButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(answerCheckBox)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(FirstButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BackButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(RandomButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(NextButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LastButton))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(answerCheckBox)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(MarkedRadioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(MarkCheckBox)))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,100 +234,37 @@ public class FlashCards extends javax.swing.JFrame {
                     .addComponent(FirstButton)
                     .addComponent(RandomButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(answerCheckBox)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(MarkCheckBox)
+                    .addComponent(MarkedRadioButton)
+                    .addComponent(answerCheckBox))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
-<<<<<<< HEAD
->>>>>>> 49b5bd63d3de05cd12df654e96ee4fbfeb15fa13
-=======
->>>>>>> 49b5bd63d3de05cd12df654e96ee4fbfeb15fa13
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<< HEAD
-<<<<<<< HEAD
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(answerCheckBox)
-                        .addGap(141, 141, 141))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(QAlabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(MarkingCheckBox)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(FirstButton)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(BackButton)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(RandomButton)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(NextButton)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(LastButton)))))
-                        .addGap(50, 50, 50))))
-=======
-=======
-
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(QAlabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(QAlabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(108, Short.MAX_VALUE))
->>>>>>> 49b5bd63d3de05cd12df654e96ee4fbfeb15fa13
-
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(QAlabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(108, Short.MAX_VALUE))
-
->>>>>>> 49b5bd63d3de05cd12df654e96ee4fbfeb15fa13
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-<<<<<<< HEAD
-<<<<<<< HEAD
-                .addGap(11, 11, 11)
-                .addComponent(MarkingCheckBox)
-                .addGap(9, 9, 9)
-                .addComponent(QAlabel, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(NextButton)
-                    .addComponent(BackButton)
-                    .addComponent(LastButton)
-                    .addComponent(FirstButton)
-                    .addComponent(RandomButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(answerCheckBox)
-                .addGap(17, 17, 17))
-=======
-=======
->>>>>>> 49b5bd63d3de05cd12df654e96ee4fbfeb15fa13
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(QAlabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(QAlabel, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-<<<<<<< HEAD
->>>>>>> 49b5bd63d3de05cd12df654e96ee4fbfeb15fa13
-=======
->>>>>>> 49b5bd63d3de05cd12df654e96ee4fbfeb15fa13
+            .addGroup(layout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -324,6 +276,8 @@ public class FlashCards extends javax.swing.JFrame {
     // static String[] QuestionArray = new String[5];
     // static String[] AnswerArray = new String[5];
     static ArrayList<Card> cardList = new ArrayList<Card>();
+    static ArrayList<Card> markedCards = new ArrayList<Card>();
+    static int counter = 0;
 
     static FileSystem fs;
     static File file;
@@ -375,50 +329,107 @@ public class FlashCards extends javax.swing.JFrame {
     }
 
     private void flipThrough() {
-        if (this.answerCheckBox.isSelected()) {
-            if (cardState) {
-                // The answer was showing before the label was clicked.
-                cardState = false;
-                this.QAlabel.setText(cardList.get(position).getFrontInfo());
+        if (MarkedRadioButton.isSelected()) {
+
+            if (this.answerCheckBox.isSelected()) {
+                if (cardState) {
+                    // The answer was showing before the label was clicked.
+                    cardState = false;
+                    this.QAlabel.setText(markedCards.get(counter).getFrontInfo());
+
+                } else {
+                    // The question was showing before the label was clicked.
+                    cardState = true;
+                    //Cycle to the next card if it changes back to the answer.
+                    counter++;
+                    // If the next card shown would be out of bounds, loop back instead.
+                    try {
+                        this.QAlabel.setText(markedCards.get(counter).getBackInfo());
+                    } catch (IndexOutOfBoundsException abe) {
+                        this.QAlabel.setText(markedCards.get(0).getBackInfo());
+                        counter = 0;
+                    }// End of try-catch.
+
+                }// End of cardState if.
 
             } else {
-                // The question was showing before the label was clicked.
-                cardState = true;
-                //Cycle to the next card if it changes back to the answer.
-                position++;
-                // If the next card shown would be out of bounds, loop back instead.
-                try {
-                    this.QAlabel.setText(cardList.get(position).getBackInfo());
-                } catch (IndexOutOfBoundsException abe) {
-                    this.QAlabel.setText(cardList.get(0).getBackInfo());
-                    position = 0;
-                }// End of try-catch.
 
-            }// End of cardState if.
+                if (cardState) {
+                    // The answer was showing before the label was clicked.
+                    cardState = false;
+                    // When switching back to a question, cycle to the next card.
+                    counter++;
 
+                    // Using a try-catch to loop back is surprisingly effective.
+                    try {
+                        this.QAlabel.setText(markedCards.get(counter).getFrontInfo());
+                    } catch (IndexOutOfBoundsException abe) {
+                        this.QAlabel.setText(markedCards.get(0).getFrontInfo());
+                        counter = 0;
+                    }// End of try-catch.
+
+                } else {
+                    // The question was showing before the label was clicked.
+                    cardState = true;
+                    this.QAlabel.setText(markedCards.get(counter).getBackInfo());
+
+                }// End of cardState if.
+            }// End of answerCheckBox if.
+
+            this.MarkCheckBox.setSelected(true);
         } else {
 
-            if (cardState) {
-                // The answer was showing before the label was clicked.
-                cardState = false;
-                // When switching back to a question, cycle to the next card.
-                position++;
-
-                // Using a try-catch to loop back is surprisingly effective.
-                try {
+            if (this.answerCheckBox.isSelected()) {
+                if (cardState) {
+                    // The answer was showing before the label was clicked.
+                    cardState = false;
                     this.QAlabel.setText(cardList.get(position).getFrontInfo());
-                } catch (IndexOutOfBoundsException abe) {
-                    this.QAlabel.setText(cardList.get(0).getFrontInfo());
-                    position = 0;
-                }// End of try-catch.
+
+                } else {
+                    // The question was showing before the label was clicked.
+                    cardState = true;
+                    //Cycle to the next card if it changes back to the answer.
+                    position++;
+                    // If the next card shown would be out of bounds, loop back instead.
+                    try {
+                        this.QAlabel.setText(cardList.get(position).getBackInfo());
+                    } catch (IndexOutOfBoundsException abe) {
+                        this.QAlabel.setText(cardList.get(0).getBackInfo());
+                        position = 0;
+                    }// End of try-catch.
+
+                }// End of cardState if.
 
             } else {
-                // The question was showing before the label was clicked.
-                cardState = true;
-                this.QAlabel.setText(cardList.get(position).getBackInfo());
 
-            }// End of cardState if.
-        }// End of answerCheckBox if.
+                if (cardState) {
+                    // The answer was showing before the label was clicked.
+                    cardState = false;
+                    // When switching back to a question, cycle to the next card.
+                    position++;
+
+                    // Using a try-catch to loop back is surprisingly effective.
+                    try {
+                        this.QAlabel.setText(cardList.get(position).getFrontInfo());
+                    } catch (IndexOutOfBoundsException abe) {
+                        this.QAlabel.setText(cardList.get(0).getFrontInfo());
+                        position = 0;
+                    }// End of try-catch.
+
+                } else {
+                    // The question was showing before the label was clicked.
+                    cardState = true;
+                    this.QAlabel.setText(cardList.get(position).getBackInfo());
+
+                }// End of cardState if.
+            }// End of answerCheckBox if.
+        }// End of MarkedRadioButton if.
+
+        if (markedCards.contains(cardList.get(position))) {
+            this.MarkCheckBox.setSelected(true);
+        } else {
+            this.MarkCheckBox.setSelected(false);
+        }
 
     }
 
@@ -443,7 +454,7 @@ public class FlashCards extends javax.swing.JFrame {
         }
 
     }
-    
+
     private void WriteButtonActionPerformed(java.awt.event.ActionEvent evt) {
         if (this.QuestionField.getText().isEmpty() || this.AnswerField.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "There must be both a question and an answer", "Input Error", JOptionPane.ERROR_MESSAGE);
@@ -463,7 +474,7 @@ public class FlashCards extends javax.swing.JFrame {
             }
         }
     }
-    
+
 
     private void QAlabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_QAlabelMouseClicked
         createArrays();
@@ -475,78 +486,176 @@ public class FlashCards extends javax.swing.JFrame {
     private void RandomButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RandomButtonActionPerformed
         readCards();
         int random;
-        do {
-            random = (int) (Math.random() * cardList.size());
-        } while (random == position);
-        position = random;
-
-        if (this.answerCheckBox.isSelected()) {
-            cardState = true;
-            this.QAlabel.setText(cardList.get(position).getBackInfo());
+        if (MarkedRadioButton.isSelected()) {
+            do {
+                random = (int) (Math.random() * markedCards.size());
+            } while (random == counter);
+            counter = random;
+            if (this.answerCheckBox.isSelected()) {
+                this.QAlabel.setText(markedCards.get(counter).getBackInfo());
+            } else {
+                this.QAlabel.setText(markedCards.get(counter).getFrontInfo());
+            }
+            this.MarkCheckBox.setSelected(true);
         } else {
-            cardState = false;
-            this.QAlabel.setText(cardList.get(position).getFrontInfo());
+            do {
+                random = (int) (Math.random() * cardList.size());
+            } while (random == position);
+            position = random;
+
+            if (this.answerCheckBox.isSelected()) {
+                this.QAlabel.setText(cardList.get(position).getBackInfo());
+            } else {
+                this.QAlabel.setText(cardList.get(position).getFrontInfo());
+            }
         }
-        
-        if(this.MarkingCheckBox.isSelected()){
-            ArrayList<Card> markedCards = new ArrayList<Card>();
-            markedCards.add(cardList.get(position));
-        }else{
-            
+
+        if (markedCards.contains(cardList.get(position))) {
+            this.MarkCheckBox.setSelected(true);
+        } else {
+            this.MarkCheckBox.setSelected(false);
         }
     }//GEN-LAST:event_RandomButtonActionPerformed
 
     private void FirstButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FirstButtonActionPerformed
         readCards();
-        position = 0;
-
-        if (this.answerCheckBox.isSelected()) {
-            this.QAlabel.setText(cardList.get(position).getBackInfo());
+        if (MarkedRadioButton.isSelected()) {
+            counter = 0;
+            if (this.answerCheckBox.isSelected()) {
+                this.QAlabel.setText(markedCards.get(counter).getBackInfo());
+            } else {
+                this.QAlabel.setText(markedCards.get(counter).getFrontInfo());
+            }
+            this.MarkCheckBox.setSelected(true);
         } else {
-            this.QAlabel.setText(cardList.get(position).getFrontInfo());
+            position = 0;
+            if (this.answerCheckBox.isSelected()) {
+                this.QAlabel.setText(cardList.get(position).getBackInfo());
+            } else {
+                this.QAlabel.setText(cardList.get(position).getFrontInfo());
+            }
+        }
+        if (markedCards.contains(cardList.get(position))) {
+            this.MarkCheckBox.setSelected(true);
+        } else {
+            this.MarkCheckBox.setSelected(false);
         }
     }//GEN-LAST:event_FirstButtonActionPerformed
 
     private void NextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NextButtonActionPerformed
         readCards();
-        if (position == cardList.size() - 1) {
-            position = 0;
+        if (MarkedRadioButton.isSelected()) {
+            if (counter == markedCards.size() - 1) {
+                counter = 0;
+            } else {
+                counter++;
+            }
+            if (this.answerCheckBox.isSelected()) {
+                this.QAlabel.setText(markedCards.get(counter).getBackInfo());
+            } else {
+                this.QAlabel.setText(markedCards.get(counter).getFrontInfo());
+            }
+            this.MarkCheckBox.setSelected(true);
         } else {
-            position++;
+            if (position == cardList.size() - 1) {
+                position = 0;
+            } else {
+                position++;
+            }
+
+            if (this.answerCheckBox.isSelected()) {
+                this.QAlabel.setText(cardList.get(position).getBackInfo());
+            } else {
+                this.QAlabel.setText(cardList.get(position).getFrontInfo());
+            }
         }
 
-        if (this.answerCheckBox.isSelected()) {
-            this.QAlabel.setText(cardList.get(position).getBackInfo());
+        if (markedCards.contains(cardList.get(position))) {
+            this.MarkCheckBox.setSelected(true);
         } else {
-            this.QAlabel.setText(cardList.get(position).getFrontInfo());
+            this.MarkCheckBox.setSelected(false);
         }
     }//GEN-LAST:event_NextButtonActionPerformed
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
         readCards();
-        if (position == 0) {
-            position = cardList.size() - 1;
+        if (MarkedRadioButton.isSelected()) {
+            if (counter == 0) {
+                counter = markedCards.size() - 1;
+            } else {
+                counter--;
+            }
+            if (this.answerCheckBox.isSelected()) {
+                this.QAlabel.setText(markedCards.get(counter).getBackInfo());
+            } else {
+                this.QAlabel.setText(markedCards.get(counter).getFrontInfo());
+            }
+            this.MarkCheckBox.setSelected(true);
         } else {
-            position--;
+            if (position == 0) {
+                position = cardList.size() - 1;
+            } else {
+                position--;
+            }
+
+            if (this.answerCheckBox.isSelected()) {
+                this.QAlabel.setText(cardList.get(position).getBackInfo());
+            } else {
+                this.QAlabel.setText(cardList.get(position).getFrontInfo());
+            }
         }
 
-        if (this.answerCheckBox.isSelected()) {
-            this.QAlabel.setText(cardList.get(position).getBackInfo());
+        if (markedCards.contains(cardList.get(position))) {
+            this.MarkCheckBox.setSelected(true);
         } else {
-            this.QAlabel.setText(cardList.get(position).getFrontInfo());
+            this.MarkCheckBox.setSelected(false);
         }
     }//GEN-LAST:event_BackButtonActionPerformed
 
     private void LastButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LastButtonActionPerformed
         readCards();
-        position = cardList.size() - 1;
+        if (MarkedRadioButton.isSelected()) {
+            counter = markedCards.size() - 1;
+            if (this.answerCheckBox.isSelected()) {
+                this.QAlabel.setText(markedCards.get(counter).getBackInfo());
+            } else {
+                this.QAlabel.setText(markedCards.get(counter).getFrontInfo());
+            }
+            this.MarkCheckBox.setSelected(true);
+        } else {
+            position = cardList.size() - 1;
 
-        if (this.answerCheckBox.isSelected()) {
-            this.QAlabel.setText(cardList.get(position).getBackInfo());
+            if (this.answerCheckBox.isSelected()) {
+                this.QAlabel.setText(cardList.get(position).getBackInfo());
+            } else {
+                this.QAlabel.setText(cardList.get(position).getFrontInfo());
+            }
+        }
+
+        if (markedCards.contains(cardList.get(position))) {
+            this.MarkCheckBox.setSelected(true);
+        } else {
+            this.MarkCheckBox.setSelected(false);
+        }
+    }//GEN-LAST:event_LastButtonActionPerformed
+
+    private void MarkCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MarkCheckBoxActionPerformed
+        if (MarkCheckBox.isSelected()) {
+            markedCards.add(cardList.get(position));
+        } else {
+            markedCards.remove(position);
+        }
+    }//GEN-LAST:event_MarkCheckBoxActionPerformed
+
+    private void MarkedRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MarkedRadioButtonActionPerformed
+
+        if (MarkedRadioButton.isSelected()) {
+            counter = 0;
+            this.QAlabel.setText(markedCards.get(counter).getFrontInfo());
         } else {
             this.QAlabel.setText(cardList.get(position).getFrontInfo());
         }
-    }//GEN-LAST:event_LastButtonActionPerformed
+    }//GEN-LAST:event_MarkedRadioButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -598,7 +707,8 @@ public class FlashCards extends javax.swing.JFrame {
     private javax.swing.JButton BackButton;
     private javax.swing.JButton FirstButton;
     private javax.swing.JButton LastButton;
-    private javax.swing.JCheckBox MarkingCheckBox;
+    private javax.swing.JCheckBox MarkCheckBox;
+    private javax.swing.JRadioButton MarkedRadioButton;
     private javax.swing.JButton NextButton;
     private javax.swing.JLabel QAlabel;
     private javax.swing.JTextField QuestionField;
